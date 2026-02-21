@@ -24,4 +24,7 @@ fn main() {
     let mars_weight = calculate_mars_weight(weight);
 
     println!("Your weight on Mars is: {:.2} kg", mars_weight);
+    println!("\nPress Enter to exit...");
+    let mut exit_buffer = String::new();
+    io::stdin().read_line(&mut exit_buffer).unwrap();
 }
