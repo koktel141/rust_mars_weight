@@ -1,4 +1,5 @@
 use std::io::{self, Write};
+use colored::*;
 
 fn calculate_mars_weight(earth_weight: f32) -> f32 {
     (earth_weight * 3.71) / 9.81
@@ -20,7 +21,6 @@ fn main() {
     let name = get_string("Enter your name: ");
     let weight = get_input("Enter your weight: ");
 
-    println!("Hello {}, on Mars you weigh: {:.2} kg", name, calculate_mars_weight(weight));
-    
+    println!("Hello {}, on Mars you weigh: {} kg", name.green(), format!("{:.2}", calculate_mars_weight(weight)).yellow().bold());
     get_string("\nPress Enter to exit..."); 
 }
