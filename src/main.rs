@@ -4,27 +4,23 @@ fn calculate_mars_weight(earth_weight: f32) -> f32 {
     (earth_weight * 3.71) / 9.81
 }
 
-fn get_input(prompt: &str) -> f32 {
+fn get_string(prompt: &str) -> String {
     print!("{}", prompt);
     io::stdout().flush().unwrap();
-
     let mut input = String::new();
-    io::stdin()
-        .read_line(&mut input)
-        .expect("Eror in reading input !");
-
-    input.trim().parse().unwrap_or(0.0) 
+    io::stdin().read_line(&mut input).expect("Failed to read");
+    input.trim().to_string() 
 }
 
+fn get_input(prompt: &str) -> f32 {
+    let s = get_string(prompt);
+    s.parse().unwrap_or(0.0) 
+}
 fn main() {
-    println!("--- Mars Weight Calculator ---");
+    let name = get_string("Enter your name: ");
+    let weight = get_input("Enter your weight: ");
 
-    let weight = get_input("Enter your weight on Earth (kg): ");
+    println!("Hello {}, on Mars you weigh: {:.2} kg", name, calculate_mars_weight(weight));
     
-    let mars_weight = calculate_mars_weight(weight);
-
-    println!("Your weight on Mars is: {:.2} kg", mars_weight);
-    println!("\nPress Enter to exit...");
-    let mut exit_buffer = String::new();
-    io::stdin().read_line(&mut exit_buffer).unwrap();
+    get_string("\nPress Enter to exit..."); 
 }
